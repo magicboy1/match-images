@@ -301,17 +301,37 @@ canvas {
 }
 
 .game-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, auto) 1fr minmax(0, auto);
   align-items: center;
-  justify-content: space-between;
+  column-gap: clamp(10px, 2vw, 20px);
   padding: clamp(10px, 2vw, 16px) clamp(15px, 3vw, 25px);
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border-bottom: none;
   box-shadow: none;
+  pointer-events: auto;
   width: 100%;
-  gap: clamp(10px, 2vw, 20px);
   animation: headerSlideDown 0.6s ease both;
+}
+
+@media (max-width: 640px) {
+  .game-header {
+    grid-template-columns: 1fr;
+    row-gap: clamp(8px, 2vw, 12px);
+    text-align: center;
+  }
+  
+  .game-title,
+  .level-indicator,
+  .header-actions {
+    justify-self: center;
+  }
+  
+  .header-button {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @keyframes headerSlideDown {
@@ -1207,18 +1227,18 @@ canvas {
 }
 
 .card-back {
-  background: linear-gradient(135deg, #FFE66D 0%, #FFDD57 50%, #FFC93C 100%);
-  border: 6px solid #FF9A3C;
+  background: linear-gradient(135deg, #E5F26B 0%, #D9ED5F 50%, #CDE853 100%);
+  border: 6px solid #B8D946;
   box-shadow: 
-    0 6px 20px rgba(255, 193, 60, 0.4),
-    inset 0 2px 10px rgba(255, 255, 255, 0.3);
+    0 6px 20px rgba(229, 242, 107, 0.5),
+    inset 0 2px 10px rgba(255, 255, 255, 0.4);
 }
 
 .card-back-pattern {
   font-size: clamp(2.5rem, 8vw, 5rem);
-  color: rgba(255, 154, 60, 0.5);
+  color: rgba(184, 217, 70, 0.6);
   font-weight: 800;
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
 }
 
 .card-front {
@@ -1276,6 +1296,7 @@ canvas {
   border-radius: 10px;
   border: 3px solid var(--yellow);
   box-shadow: 0 3px 0px var(--teal);
+  justify-self: start;
 }
 
 .level-indicator {
@@ -1288,6 +1309,11 @@ canvas {
   border: 3px solid var(--navy);
   box-shadow: 0 3px 0px var(--teal);
   white-space: nowrap;
+  justify-self: center;
+}
+
+.header-actions {
+  justify-self: end;
 }
 
 /* Celebration Icon */

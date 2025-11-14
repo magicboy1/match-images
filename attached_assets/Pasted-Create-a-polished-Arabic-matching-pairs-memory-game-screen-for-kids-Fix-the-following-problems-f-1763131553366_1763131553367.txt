@@ -1,0 +1,56 @@
+Create a polished Arabic "matching pairs" memory game screen for kids.
+
+Fix the following problems from the previous version:
+- The cards were too small and centered with a lot of empty space.
+- The text "0/2 أزواج" overlapped with the cards.
+- All cards showed only a question mark, so the concept of image pairs was not clear.
+- The layout did not use the full screen width.
+
+New requirements:
+
+1) Layout
+- Use a full-width game board centered vertically.
+- For Level 1, display a 2x2 grid of big square cards.
+- Each card should be at least 200–250px on a full HD screen so kids can easily tap them.
+- Reduce empty space on the sides; the cards should feel big and clear.
+- Keep a clean top bar with:
+  - Left: rounded "إعادة" button.
+  - Center: badge showing the level, e.g. "المستوى 1".
+  - Right: title in Arabic "لعبة تطابق الصور".
+- Move the pairs counter below the level badge (not overlapping the cards), e.g. "0 / 2 أزواج".
+
+2) Game logic
+- Use REAL image pairs instead of just question marks.
+- Each pair should be two related images, for example:
+  - Scientist 👨‍🔬 with a microscope 🔬
+  - Robot 🤖 with a gear ⚙️
+  - Lock 🔒 with a key 🗝️
+  - Shield 🛡 with lock 🔐
+- Initially all cards are face-down and show a soft question mark icon.
+- When a card is tapped, flip it with a smooth animation to reveal the image.
+- After the child taps a second card:
+  - If the two images form a correct pair, keep them revealed with a green glow and play a success sound.
+  - If not, briefly show both, then flip them back face-down.
+
+3) Levels
+- Level 1: 2 pairs (2x2 grid).
+- Level 2: 4 pairs (2x4 grid).
+- Level 3: 6 pairs (3x4 grid).
+- After completing all pairs in a level, show a centered modal:
+  - Title: "أحسنت! اكتشفت كل الأزواج 🎉"
+  - Buttons: "المستوى التالي" and "إعادة اللعب".
+
+4) Visual style
+- Use the same color theme as the existing project: green background, yellow cards, playful kids style.
+- Cards should have soft shadows, rounded corners, and a subtle glow on hover/tap.
+- Text must be in Arabic, right-to-left:
+  - "لعبة تطابق الصور"
+  - "المستوى 1"
+  - "إعادة"
+  - "أزواج"
+- Make sure the pairs counter and progress bar are clearly visible and not overlapping the cards.
+
+5) Technical
+- Implement as a single React component suitable for a Vite app.
+- Store card data (images and pair relations) in a simple array so we can replace icons later.
+- Support touch events (tap) and mouse clicks.
