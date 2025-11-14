@@ -113,35 +113,36 @@ canvas {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 200px);
-  padding: 20px;
+  min-height: calc(100vh - 100px);
+  padding: 1rem;
+  padding-top: 100px;
 }
 
 .game-board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  max-width: 500px;
+  gap: clamp(8px, 2vw, 15px);
+  max-width: min(90vw, 500px);
   width: 100%;
-  padding: 20px;
+  padding: clamp(10px, 3vw, 20px);
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 30px;
+  border-radius: 20px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .game-cell {
   aspect-ratio: 1;
   background: white;
-  border: 4px solid #4caf50;
-  border-radius: 20px;
+  border: 3px solid #4caf50;
+  border-radius: 15px;
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
-  min-height: 100px;
+  font-size: clamp(2.5rem, 10vw, 4rem);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-height: 60px;
 }
 
 .game-cell.clickable:hover {
@@ -196,53 +197,64 @@ canvas {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 30px;
+  padding: clamp(10px, 3vw, 20px) clamp(15px, 4vw, 30px);
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   pointer-events: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 }
 
 .player-indicator {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.5rem;
+  gap: clamp(5px, 2vw, 10px);
+  font-size: clamp(1rem, 3vw, 1.5rem);
   font-weight: 700;
   color: #1e7a52;
 }
 
 .player-icon {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.player-label {
+  white-space: nowrap;
 }
 
 .status-message {
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
   font-weight: 800;
   color: #2e7d32;
   text-align: center;
   flex: 1;
-  padding: 0 20px;
+  padding: 0 clamp(10px, 2vw, 20px);
 }
 
 .game-controls {
   position: fixed;
-  bottom: 30px;
+  bottom: clamp(15px, 3vw, 30px);
   left: 50%;
   transform: translateX(-50%);
   pointer-events: auto;
+  z-index: 50;
 }
 
 .restart-button-small {
   background: #4caf50;
   color: white;
   border: none;
-  padding: 15px 35px;
-  border-radius: 25px;
-  font-size: 1.3rem;
+  padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 35px);
+  border-radius: 20px;
+  font-size: clamp(1rem, 3vw, 1.3rem);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  white-space: nowrap;
 }
 
 .restart-button-small:hover {
@@ -280,13 +292,14 @@ canvas {
 
 .game-over-card {
   background: white;
-  padding: 50px;
-  border-radius: 40px;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border-radius: 30px;
   text-align: center;
-  max-width: 500px;
-  width: 90%;
+  max-width: min(90vw, 500px);
+  width: 100%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.4s ease;
+  margin: 1rem;
 }
 
 @keyframes slideUp {
@@ -301,10 +314,10 @@ canvas {
 }
 
 .game-over-message {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   font-weight: 800;
   color: #1e7a52;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1rem, 3vw, 2rem);
   line-height: 1.4;
 }
 
@@ -312,13 +325,14 @@ canvas {
   background: #4caf50;
   color: white;
   border: none;
-  padding: 20px 50px;
-  border-radius: 30px;
-  font-size: 1.6rem;
+  padding: clamp(12px, 3vw, 20px) clamp(30px, 6vw, 50px);
+  border-radius: 25px;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+  white-space: nowrap;
 }
 
 .restart-button:hover {
@@ -331,120 +345,62 @@ canvas {
   transform: scale(1);
 }
 
-@media (max-width: 768px) {
-  .selection-title {
-    font-size: 2rem;
-  }
-  
-  .character-card {
-    width: 150px;
-    height: 180px;
-  }
-  
-  .character-icon {
-    font-size: 4rem;
-  }
-  
-  .character-name {
-    font-size: 1.4rem;
-  }
-  
-  .game-board {
-    max-width: 350px;
-    gap: 10px;
-    padding: 15px;
-  }
-  
-  .game-cell {
-    font-size: 3rem;
-    min-height: 80px;
-  }
-  
-  .status-message {
-    font-size: 1.3rem;
-  }
-  
-  .game-over-message {
-    font-size: 2rem;
-  }
-  
-  .restart-button {
-    padding: 15px 35px;
-    font-size: 1.3rem;
-  }
-}
-
-.mode-selection-screen,
-.difficulty-selection-screen {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.mode-selection-container,
-.difficulty-selection-container {
-  max-width: 700px;
-  width: 100%;
-  text-align: center;
-}
-
 .mode-options,
 .difficulty-options {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .mode-card,
 .difficulty-card {
-  width: 250px;
-  height: 280px;
+  aspect-ratio: 0.9;
   background: white;
-  border: 5px solid #4caf50;
-  border-radius: 30px;
+  border: 4px solid #4caf50;
+  border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, 2vw, 1rem);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   position: relative;
+  padding: 1rem;
 }
 
 .mode-card:hover,
 .difficulty-card:hover {
-  transform: scale(1.1) translateY(-10px);
+  transform: scale(1.05) translateY(-5px);
   box-shadow: 0 12px 30px rgba(76, 175, 80, 0.4);
   border-color: #2e7d32;
 }
 
 .mode-card:active,
 .difficulty-card:active {
-  transform: scale(1.05) translateY(-5px);
+  transform: scale(1.02) translateY(-3px);
 }
 
 .mode-icon,
 .difficulty-icon {
-  font-size: 5rem;
+  font-size: clamp(3rem, 8vw, 5rem);
   line-height: 1;
 }
 
 .mode-name,
 .difficulty-name {
-  font-size: 2rem;
+  font-size: clamp(1.3rem, 4vw, 2rem);
   font-weight: 700;
   color: #1e7a52;
 }
 
 .mode-description,
 .difficulty-description {
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
   color: #2e7d32;
   font-weight: 500;
 }
@@ -468,18 +424,18 @@ canvas {
 
 .lock-badge {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 2rem;
+  top: 8px;
+  right: 8px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .win-celebration {
-  margin: 1rem 0;
+  margin: clamp(0.5rem, 2vw, 1rem) 0;
   animation: bounce 0.6s ease infinite alternate;
 }
 
 .celebration-text {
-  font-size: 2rem;
+  font-size: clamp(1.3rem, 4vw, 2rem);
   font-weight: 700;
   color: #ff9800;
 }
@@ -509,47 +465,25 @@ canvas {
   }
 }
 
-.character-options {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  .mode-card,
-  .difficulty-card {
-    width: 180px;
-    height: 220px;
-  }
-  
-  .mode-icon,
-  .difficulty-icon {
-    font-size: 3.5rem;
-  }
-  
-  .mode-name,
-  .difficulty-name {
-    font-size: 1.5rem;
-  }
-  
-  .mode-description,
-  .difficulty-description {
-    font-size: 1rem;
-  }
-  
+@media (max-width: 480px) {
   .character-options {
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
   }
   
-  .character-card {
-    width: 120px;
-    height: 140px;
+  .mode-options,
+  .difficulty-options {
+    grid-template-columns: 1fr;
+    max-width: 300px;
   }
   
-  .character-icon {
-    font-size: 3rem !important;
+  .game-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   
-  .character-name {
-    font-size: 1.1rem !important;
+  .status-message {
+    order: -1;
+    width: 100%;
+    padding-bottom: 0.5rem;
   }
 }
