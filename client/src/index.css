@@ -176,9 +176,9 @@ canvas {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 120px);
   padding: 1rem;
-  padding-top: 100px;
+  padding-top: 140px;
 }
 
 .game-board {
