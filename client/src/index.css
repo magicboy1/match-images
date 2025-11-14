@@ -1179,14 +1179,13 @@ canvas {
 
 .matching-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(140px, 180px));
-  grid-template-rows: repeat(3, minmax(140px, 180px));
-  gap: clamp(12px, 2vw, 20px);
+  grid-template-columns: repeat(4, 170px);
+  grid-template-rows: repeat(3, 170px);
+  gap: 20px;
   justify-content: center;
-  max-width: 100%;
-  width: 100%;
+  max-width: fit-content;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 2vw, 2rem);
+  padding: 0;
 }
 
 .matching-card {
@@ -1307,17 +1306,11 @@ canvas {
 }
 
 /* Responsive matching grid */
-@media (max-width: 1400px) {
-  .matching-grid {
-    grid-template-columns: repeat(4, minmax(130px, 170px));
-    grid-template-rows: repeat(3, minmax(130px, 170px));
-  }
-}
-
 @media (max-width: 1024px) {
   .matching-grid {
-    grid-template-columns: repeat(4, minmax(120px, 150px));
-    grid-template-rows: repeat(3, minmax(120px, 150px));
+    grid-template-columns: repeat(4, 140px);
+    grid-template-rows: repeat(3, 140px);
+    gap: 16px;
   }
   
   .matching-board-container {
@@ -1327,10 +1320,9 @@ canvas {
 
 @media (max-width: 768px) {
   .matching-grid {
-    grid-template-columns: repeat(4, minmax(100px, 130px));
-    grid-template-rows: repeat(3, minmax(100px, 130px));
-    gap: clamp(10px, 2vw, 15px);
-    padding: 0 clamp(0.5rem, 2vw, 1.5rem);
+    grid-template-columns: repeat(4, 120px);
+    grid-template-rows: repeat(3, 120px);
+    gap: 14px;
   }
   
   .matching-board-container {
@@ -1340,27 +1332,26 @@ canvas {
 
 @media (max-width: 640px) {
   .matching-grid {
-    grid-template-columns: repeat(4, minmax(90px, 120px));
-    grid-template-rows: repeat(3, minmax(90px, 120px));
-    gap: clamp(10px, 2vw, 15px);
+    grid-template-columns: repeat(4, 95px);
+    grid-template-rows: repeat(3, 95px);
+    gap: 10px;
   }
   
   .matching-card {
-    padding: clamp(8px, 1.5vw, 15px);
+    padding: clamp(8px, 1.5vw, 12px);
   }
 }
 
 @media (max-width: 480px) {
   .matching-board-container {
     padding: calc(115px + 0.5rem) 0.5rem 2rem;
-    gap: 1.2rem;
+    gap: 1rem;
   }
   
   .matching-grid {
-    grid-template-columns: repeat(4, minmax(70px, 95px));
-    grid-template-rows: repeat(3, minmax(70px, 95px));
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: repeat(3, 80px);
     gap: 8px;
-    padding: 0 0.5rem;
   }
 }
 
