@@ -90,6 +90,38 @@ export function GameUI() {
     resetToStart();
   };
 
+  const getWinnerIcon = () => {
+    if (winner === "draw") {
+      return (
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+          {player1Character && (() => {
+            const charData = characterIcons[player1Character];
+            if (charData.isImage) {
+              return <img src={charData.icon} alt="" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />;
+            }
+            return <span style={{ fontSize: '80px' }}>{charData.icon}</span>;
+          })()}
+          {player2Character && (() => {
+            const charData = characterIcons[player2Character];
+            if (charData.isImage) {
+              return <img src={charData.icon} alt="" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />;
+            }
+            return <span style={{ fontSize: '80px' }}>{charData.icon}</span>;
+          })()}
+        </div>
+      );
+    }
+    
+    const winnerCharacter = winner === "player1" ? player1Character : player2Character;
+    if (!winnerCharacter) return null;
+    
+    const charData = characterIcons[winnerCharacter];
+    if (charData.isImage) {
+      return <img src={charData.icon} alt="" style={{ width: '120px', height: '120px', objectFit: 'contain' }} />;
+    }
+    return <span style={{ fontSize: '120px' }}>{charData.icon}</span>;
+  };
+
   return (
     <>
       <div className="game-header" dir="rtl">
@@ -132,7 +164,10 @@ export function GameUI() {
           )}
           <div className="game-over-overlay" dir="rtl">
             <div className="game-over-card">
-              <h2 className="game-over-message">{getStatusMessage()}</h2>
+              <div className="winner-icon-container">
+                {getWinnerIcon()}
+              </div>
+              <h2 className="game-over-message animated">{getStatusMessage()}</h2>
               <div className="game-over-actions">
                 <button className="game-over-button primary" onClick={restart}>
                   <span>إعادة اللعب</span>
