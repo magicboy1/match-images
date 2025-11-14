@@ -1185,7 +1185,9 @@ canvas {
   justify-content: center;
   max-width: fit-content;
   margin: 0 auto;
-  padding: 0;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
 }
 
 .matching-card {
@@ -1311,6 +1313,7 @@ canvas {
     grid-template-columns: repeat(4, 140px);
     grid-template-rows: repeat(3, 140px);
     gap: 16px;
+    padding: 20px;
   }
   
   .matching-board-container {
@@ -1323,6 +1326,7 @@ canvas {
     grid-template-columns: repeat(4, 120px);
     grid-template-rows: repeat(3, 120px);
     gap: 14px;
+    padding: 18px;
   }
   
   .matching-board-container {
@@ -1335,6 +1339,7 @@ canvas {
     grid-template-columns: repeat(4, 95px);
     grid-template-rows: repeat(3, 95px);
     gap: 10px;
+    padding: 15px;
   }
   
   .matching-card {
@@ -1352,6 +1357,7 @@ canvas {
     grid-template-columns: repeat(4, 80px);
     grid-template-rows: repeat(3, 80px);
     gap: 8px;
+    padding: 12px;
   }
 }
 
