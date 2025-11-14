@@ -105,8 +105,8 @@ export function GameUI() {
               width={window.innerWidth}
               height={window.innerHeight}
               recycle={false}
-              numberOfPieces={500}
-              colors={['#6EC9FF', '#FFE066', '#FF8A80', '#C8A3FF', '#7EE5B1']}
+              numberOfPieces={400}
+              colors={['#29AEB4', '#FFD83D', '#E85D4A', '#2F3E5C', '#FFFFFF']}
             />
           )}
           <div className="game-over-card celebration-card">
