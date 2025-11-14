@@ -10,12 +10,13 @@ export function ModeSelection() {
   return (
     <div className="mode-selection-screen" dir="rtl">
       <div className="mode-selection-container">
-        <h1 className="selection-title">اختر نوع اللعبة!</h1>
+        <h1 className="selection-title animated-title">اختر نوع اللعبة!</h1>
         
         <div className="mode-options">
           <button
             className="mode-card single-player-card"
             onClick={() => handleModeSelect("single")}
+            style={{ animationDelay: '0.2s' }}
           >
             <div className="mode-icon">🤖</div>
             <div className="mode-name">لاعب واحد</div>
@@ -25,6 +26,7 @@ export function ModeSelection() {
           <button
             className="mode-card two-player-card"
             onClick={() => handleModeSelect("two_player")}
+            style={{ animationDelay: '0.35s' }}
           >
             <div className="mode-icon">👥</div>
             <div className="mode-name">لاعبان</div>

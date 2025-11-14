@@ -51,6 +51,7 @@ export function GameBoard() {
             className={`game-cell ${cell !== null ? 'filled' : ''} ${canClick(index) ? 'clickable' : ''}`}
             onClick={() => handleCellClick(index)}
             disabled={!canClick(index)}
+            style={{ animationDelay: `${index * 0.08}s` }}
           >
             <div className="cell-icon">{getCharacterIcon(cell)}</div>
           </button>

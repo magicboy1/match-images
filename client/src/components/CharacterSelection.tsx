@@ -31,10 +31,10 @@ export function CharacterSelection() {
   return (
     <div className="character-selection-screen" dir="rtl">
       <div className="character-selection-container">
-        <h1 className="selection-title">{getTitle()}</h1>
+        <h1 className="selection-title animated-title">{getTitle()}</h1>
         
         <div className="character-options">
-          {availableCharacters.map((character) => {
+          {availableCharacters.map((character, index) => {
             const isUnlocked = gameMode === "two_player" || unlockedCharacters.includes(character);
             const isSelected = character === player1Character;
             const charData = characterData[character];
@@ -45,6 +45,7 @@ export function CharacterSelection() {
                 className={`character-card ${!isUnlocked ? 'locked' : ''} ${isSelected ? 'selected' : ''}`}
                 onClick={() => isUnlocked && handleCharacterSelect(character)}
                 disabled={!isUnlocked || isSelected}
+                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
                 <div className="character-icon">
                   {charData.isImage ? (

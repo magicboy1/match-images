@@ -10,12 +10,13 @@ export function DifficultySelection() {
   return (
     <div className="difficulty-selection-screen" dir="rtl">
       <div className="difficulty-selection-container">
-        <h1 className="selection-title">اختر مستوى الصعوبة!</h1>
+        <h1 className="selection-title animated-title">اختر مستوى الصعوبة!</h1>
         
         <div className="difficulty-options">
           <button
             className="difficulty-card easy-card"
             onClick={() => handleDifficultySelect("easy")}
+            style={{ animationDelay: '0.2s' }}
           >
             <div className="difficulty-icon">😊</div>
             <div className="difficulty-name">سهل</div>
@@ -25,6 +26,7 @@ export function DifficultySelection() {
           <button
             className="difficulty-card medium-card"
             onClick={() => handleDifficultySelect("medium")}
+            style={{ animationDelay: '0.35s' }}
           >
             <div className="difficulty-icon">🤔</div>
             <div className="difficulty-name">متوسط</div>
@@ -34,6 +36,7 @@ export function DifficultySelection() {
           <button
             className="difficulty-card hard-card"
             onClick={() => handleDifficultySelect("hard")}
+            style={{ animationDelay: '0.5s' }}
           >
             <div className="difficulty-icon">😎</div>
             <div className="difficulty-name">صعب</div>
