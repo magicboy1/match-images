@@ -136,8 +136,8 @@ canvas {
   position: relative;
   padding: 1rem 0.5rem;
   transform: translateY(0);
-  width: clamp(140px, 20vw, 180px);
-  height: clamp(160px, 24vw, 210px);
+  width: clamp(160px, 22vw, 200px);
+  height: clamp(180px, 26vw, 230px);
 }
 
 .character-card::before {
@@ -169,8 +169,8 @@ canvas {
   font-size: clamp(3.5rem, 10vw, 6rem);
   line-height: 1;
   filter: none;
-  width: clamp(80px, 15vw, 120px);
-  height: clamp(80px, 15vw, 120px);
+  width: clamp(90px, 16vw, 130px);
+  height: clamp(90px, 16vw, 130px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -241,18 +241,18 @@ canvas {
 
 .game-cell:disabled {
   cursor: not-allowed;
-  opacity: 0.7;
 }
 
 .cell-icon {
   line-height: 1;
   animation: popIn 0.4s ease;
   filter: none;
-  width: 80%;
-  height: 80%;
+  width: 85%;
+  height: 85%;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 1;
 }
 
 
