@@ -10,6 +10,8 @@ import { FullscreenButton } from "./components/FullscreenButton";
 
 function App() {
   const { phase } = useTicTacToe();
+  
+  console.log("LITTLE SITER XO Game - v3.0 ✨");
 
   return (
     <>
