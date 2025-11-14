@@ -75,6 +75,46 @@ export function GameUI() {
     return "";
   };
 
+  const getGameOverMessage = () => {
+    const getCharIcon = (character: Character | null, size: string = '60px') => {
+      if (!character) return null;
+      const charData = characterIcons[character];
+      if (charData.isImage) {
+        return <img src={charData.icon} alt="" style={{ width: size, height: size, objectFit: 'contain', display: 'inline-block', verticalAlign: 'middle', margin: '0 0.5rem' }} />;
+      }
+      return <span style={{ fontSize: size, verticalAlign: 'middle', margin: '0 0.3rem' }}>{charData.icon}</span>;
+    };
+
+    if (winner === "player1") {
+      return (
+        <>
+          رائع! {getCharIcon(player1Character)} فزت بالجولة 🎉
+        </>
+      );
+    } else if (winner === "player2") {
+      if (gameMode === "single") {
+        return (
+          <>
+            {getCharIcon(player2Character)} حاول مرة ثانية! 💪
+          </>
+        );
+      } else {
+        return (
+          <>
+            {getCharIcon(player2Character)} اللاعب الثاني فاز! 🎉
+          </>
+        );
+      }
+    } else if (winner === "draw") {
+      return (
+        <>
+          {getCharIcon(player1Character, '50px')} تعادل! {getCharIcon(player2Character, '50px')} جرب مرة ثانية 🤝
+        </>
+      );
+    }
+    return "";
+  };
+
   const getCurrentPlayerIcon = () => {
     const character = currentTurn === "player1" ? player1Character : player2Character;
     if (!character) return null;
@@ -88,38 +128,6 @@ export function GameUI() {
 
   const goToStart = () => {
     resetToStart();
-  };
-
-  const getWinnerIcon = () => {
-    if (winner === "draw") {
-      return (
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-          {player1Character && (() => {
-            const charData = characterIcons[player1Character];
-            if (charData.isImage) {
-              return <img src={charData.icon} alt="" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />;
-            }
-            return <span style={{ fontSize: '80px' }}>{charData.icon}</span>;
-          })()}
-          {player2Character && (() => {
-            const charData = characterIcons[player2Character];
-            if (charData.isImage) {
-              return <img src={charData.icon} alt="" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />;
-            }
-            return <span style={{ fontSize: '80px' }}>{charData.icon}</span>;
-          })()}
-        </div>
-      );
-    }
-    
-    const winnerCharacter = winner === "player1" ? player1Character : player2Character;
-    if (!winnerCharacter) return null;
-    
-    const charData = characterIcons[winnerCharacter];
-    if (charData.isImage) {
-      return <img src={charData.icon} alt="" style={{ width: '120px', height: '120px', objectFit: 'contain' }} />;
-    }
-    return <span style={{ fontSize: '120px' }}>{charData.icon}</span>;
   };
 
   return (
@@ -163,11 +171,8 @@ export function GameUI() {
             />
           )}
           <div className="game-over-overlay" dir="rtl">
-            <div className="game-over-card">
-              <div className="winner-icon-container">
-                {getWinnerIcon()}
-              </div>
-              <h2 className="game-over-message animated">{getStatusMessage()}</h2>
+            <div className="game-over-card pulse">
+              <h2 className="game-over-message animated">{getGameOverMessage()}</h2>
               <div className="game-over-actions">
                 <button className="game-over-button primary" onClick={restart}>
                   <span>إعادة اللعب</span>
