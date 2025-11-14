@@ -26,7 +26,7 @@ export function CharacterSelection() {
 
   const availableCharacters = gameMode === "two_player" 
     ? (["girl", "robot"] as Character[])
-    : (Object.keys(characterData) as Character[]);
+    : (["girl", "robot", "lion", "bear"] as Character[]);
 
   return (
     <div className="character-selection-screen" dir="rtl">
@@ -35,7 +35,7 @@ export function CharacterSelection() {
         
         <div className="character-options">
           {availableCharacters.map((character, index) => {
-            const isUnlocked = gameMode === "two_player" || unlockedCharacters.includes(character);
+            const isUnlocked = true;
             const isSelected = character === player1Character;
             const charData = characterData[character];
             
