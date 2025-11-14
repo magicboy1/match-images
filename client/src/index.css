@@ -795,3 +795,35 @@ canvas {
     padding-bottom: 0.5rem;
   }
 }
+
+.fullscreen-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 44px;
+  height: 44px;
+  background: var(--navy);
+  color: var(--white);
+  border: 3px solid var(--teal);
+  border-radius: 12px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  opacity: 0.85;
+}
+
+.fullscreen-button:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.fullscreen-button:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.2);
+}

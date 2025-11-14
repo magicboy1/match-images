@@ -7,6 +7,7 @@ import { GameBoard } from "./components/GameBoard";
 import { GameUI } from "./components/GameUI";
 import { SoundManager } from "./components/SoundManager";
 import { VoiceManager } from "./components/VoiceManager";
+import { FullscreenButton } from "./components/FullscreenButton";
 
 function App() {
   const { phase } = useTicTacToe();
@@ -15,6 +16,7 @@ function App() {
     <>
       <SoundManager />
       <VoiceManager />
+      <FullscreenButton />
       
       {phase === "mode_selection" && <ModeSelection />}
       
