@@ -81,8 +81,8 @@ export function GameUI() {
   };
 
   return (
-    <div className="game-ui-overlay" dir="rtl">
-      <div className="game-header">
+    <>
+      <div className="game-header" dir="rtl">
         <div className="player-indicator">
           <span className="player-icon">{getCurrentPlayerIcon()}</span>
           <span className="player-label">
@@ -98,38 +98,40 @@ export function GameUI() {
         </div>
       </div>
 
-      {phase === "game_over" && (
-        <div className="game-over-overlay">
-          {winner && winner !== "draw" && (
-            <Confetti
-              width={window.innerWidth}
-              height={window.innerHeight}
-              recycle={false}
-              numberOfPieces={400}
-              colors={['#48A079', '#E5F26B', '#F46A4E', '#2C3A52', '#FFFFFF']}
-            />
-          )}
-          <div className="game-over-card celebration-card">
-            <h2 className="game-over-message">{getStatusMessage()}</h2>
-            {winner === "player1" && (
-              <div className="win-celebration">
-                <div className="celebration-text">أحسنت! 🎊</div>
-              </div>
+      <div className="game-ui-overlay" dir="rtl">
+        {phase === "game_over" && (
+          <div className="game-over-overlay">
+            {winner && winner !== "draw" && (
+              <Confetti
+                width={window.innerWidth}
+                height={window.innerHeight}
+                recycle={false}
+                numberOfPieces={400}
+                colors={['#48A079', '#E5F26B', '#F46A4E', '#2C3A52', '#FFFFFF']}
+              />
             )}
-            <button className="restart-button" onClick={restart}>
+            <div className="game-over-card celebration-card">
+              <h2 className="game-over-message">{getStatusMessage()}</h2>
+              {winner === "player1" && (
+                <div className="win-celebration">
+                  <div className="celebration-text">أحسنت! 🎊</div>
+                </div>
+              )}
+              <button className="restart-button" onClick={restart}>
+                إعادة اللعب 🔄
+              </button>
+            </div>
+          </div>
+        )}
+
+        {phase === "playing" && (
+          <div className="game-controls">
+            <button className="restart-button-small" onClick={restart}>
               إعادة اللعب 🔄
             </button>
           </div>
-        </div>
-      )}
-
-      {phase === "playing" && (
-        <div className="game-controls">
-          <button className="restart-button-small" onClick={restart}>
-            إعادة اللعب 🔄
-          </button>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
