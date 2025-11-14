@@ -1,7 +1,7 @@
-import { useTicTacToe, type GameMode } from "@/lib/stores/useTicTacToe";
+import { useMatchingGame, type GameMode } from "@/lib/stores/useMatchingGame";
 
 export function ModeSelection() {
-  const { selectMode } = useTicTacToe();
+  const { selectMode } = useMatchingGame();
 
   const handleModeSelect = (mode: GameMode) => {
     selectMode(mode);

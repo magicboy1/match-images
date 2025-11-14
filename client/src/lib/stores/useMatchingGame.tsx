@@ -99,7 +99,9 @@ export const useMatchingGame = create<MatchingGameState>((set, get) => ({
   
   selectMode: (mode: GameMode) => {
     set({ 
-      gameMode: mode, 
+      gameMode: mode,
+      player1Character: null,
+      player2Character: null,
       phase: "level_selection"
     });
   },
@@ -291,5 +293,6 @@ export const useMatchingGame = create<MatchingGameState>((set, get) => ({
       feedback: null,
       feedbackSlotId: null
     });
+    console.log("Game reset to start, all characters cleared");
   }
 }));

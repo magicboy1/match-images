@@ -1,18 +1,18 @@
-import { useTicTacToe, type Character } from "@/lib/stores/useTicTacToe";
+import { useMatchingGame, type GameImage } from "@/lib/stores/useMatchingGame";
 
-const characterData: Record<Character, { icon: string; name: string; isImage?: boolean }> = {
-  girl: { icon: "/characters/girl.png", name: "البنت", isImage: true },
-  robot: { icon: "/characters/robot.png", name: "الروبوت", isImage: true },
-  cat: { icon: "🐱", name: "القطة" },
-  dog: { icon: "🐶", name: "الكلب" },
-  bear: { icon: "🐻", name: "الدب" },
-  lion: { icon: "🦁", name: "الأسد" }
+const characterData: Record<GameImage, { icon: string; name: string; isImage: boolean }> = {
+  girl: { icon: "/game-images/girl.png", name: "البنت", isImage: true },
+  robot: { icon: "/game-images/robot.png", name: "الروبوت", isImage: true },
+  scientist: { icon: "/game-images/scientist.png", name: "العالم", isImage: true },
+  lock: { icon: "/game-images/lock.png", name: "القفل", isImage: true },
+  earth: { icon: "/game-images/earth.png", name: "الأرض", isImage: true },
+  cloud: { icon: "/game-images/cloud.png", name: "السحابة", isImage: true }
 };
 
 export function CharacterSelection() {
-  const { selectCharacter, unlockedCharacters, player1Character, gameMode } = useTicTacToe();
+  const { selectCharacter, player1Character, gameMode } = useMatchingGame();
 
-  const handleCharacterSelect = (character: Character) => {
+  const handleCharacterSelect = (character: GameImage) => {
     selectCharacter(character);
   };
 
@@ -25,8 +25,8 @@ export function CharacterSelection() {
   };
 
   const availableCharacters = gameMode === "two_player" 
-    ? (["girl", "robot"] as Character[])
-    : (["girl", "robot", "lion", "bear"] as Character[]);
+    ? (["girl", "robot", "scientist", "lock"] as GameImage[])
+    : (["girl", "robot", "scientist", "earth"] as GameImage[]);
 
   return (
     <div className="character-selection-screen" dir="rtl">
@@ -35,27 +35,21 @@ export function CharacterSelection() {
         
         <div className="character-options">
           {availableCharacters.map((character, index) => {
-            const isUnlocked = true;
             const isSelected = character === player1Character;
             const charData = characterData[character];
             
             return (
               <button
                 key={character}
-                className={`character-card ${!isUnlocked ? 'locked' : ''} ${isSelected ? 'selected' : ''}`}
-                onClick={() => isUnlocked && handleCharacterSelect(character)}
-                disabled={!isUnlocked || isSelected}
+                className={`character-card ${isSelected ? 'selected' : ''}`}
+                onClick={() => handleCharacterSelect(character)}
+                disabled={isSelected}
                 style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
                 <div className="character-icon">
-                  {charData.isImage ? (
-                    <img src={charData.icon} alt={charData.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                  ) : (
-                    charData.icon
-                  )}
+                  <img src={charData.icon} alt={charData.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 </div>
                 <div className="character-name">{charData.name}</div>
-                {!isUnlocked && <div className="lock-badge">🔒</div>}
               </button>
             );
           })}
