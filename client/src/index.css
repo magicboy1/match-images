@@ -302,35 +302,55 @@ canvas {
 
 .game-header {
   display: grid;
-  grid-template-columns: minmax(0, auto) 1fr minmax(0, auto);
-  align-items: center;
-  column-gap: clamp(10px, 2vw, 20px);
-  padding: clamp(10px, 2vw, 16px) clamp(15px, 3vw, 25px);
-  background: rgba(255, 255, 255, 0.15);
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  column-gap: clamp(15px, 3vw, 30px);
+  padding: clamp(12px, 2vw, 20px) clamp(20px, 3vw, 40px);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: none;
-  box-shadow: none;
+  border-bottom: 3px solid var(--navy);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   pointer-events: auto;
   width: 100%;
   animation: headerSlideDown 0.6s ease both;
 }
 
-@media (max-width: 640px) {
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  justify-self: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+}
+
+@media (max-width: 768px) {
   .game-header {
     grid-template-columns: 1fr;
-    row-gap: clamp(8px, 2vw, 12px);
+    grid-template-rows: auto auto auto;
+    row-gap: 12px;
     text-align: center;
   }
   
-  .game-title,
-  .level-indicator,
-  .header-actions {
+  .header-left,
+  .header-center,
+  .header-right {
     justify-self: center;
   }
   
   .header-button {
-    width: 100%;
-    justify-content: center;
+    width: auto;
+    min-width: 120px;
   }
 }
 
@@ -480,16 +500,18 @@ canvas {
 
 .game-over-card {
   background: var(--yellow);
-  padding: clamp(2rem, 6vw, 3.5rem);
+  padding: clamp(1.5rem, 5vw, 3rem);
   border-radius: 20px;
-  border: 12px solid var(--navy);
+  border: clamp(6px, 1.5vw, 12px) solid var(--navy);
   text-align: center;
-  max-width: min(90vw, 550px);
+  max-width: min(85vw, 500px);
   width: 100%;
-  box-shadow: 0 10px 0px var(--teal), 0 0 0 16px var(--orange-red), 0 0 0 24px var(--black);
+  box-shadow: 0 8px 0px var(--teal), 0 0 0 clamp(8px, 2vw, 16px) var(--orange-red);
   animation: slideUp 0.4s ease;
-  margin: 1rem;
+  margin: clamp(1rem, 3vw, 2rem);
   position: relative;
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
 .game-over-card.pulse {
@@ -1155,34 +1177,39 @@ canvas {
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding: 2rem 1rem;
-  padding-bottom: 6rem;
+  padding: clamp(1rem, 2vw, 2rem);
+  padding-bottom: 2rem;
   overflow-y: auto;
+  width: 100%;
 }
 
 .memory-grid {
   display: grid;
-  gap: clamp(10px, 2vw, 18px);
-  padding: clamp(15px, 3vw, 25px);
-  max-width: min(95vw, 900px);
+  gap: clamp(15px, 2.5vw, 25px);
+  padding: 0;
   width: 100%;
   margin: 0 auto;
 }
 
 .memory-grid-2x2 {
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  max-width: 500px;
+  grid-template-columns: repeat(2, minmax(200px, 250px));
+  grid-template-rows: repeat(2, minmax(200px, 250px));
+  max-width: 600px;
+  justify-content: center;
 }
 
 .memory-grid-2x4 {
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(4, minmax(150px, 200px));
+  grid-template-rows: repeat(2, minmax(150px, 200px));
+  max-width: 95%;
+  justify-content: center;
 }
 
 .memory-grid-3x4 {
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(140px, 180px));
+  grid-template-rows: repeat(3, minmax(140px, 180px));
+  max-width: 95%;
+  justify-content: center;
 }
 
 .memory-card {
@@ -1236,9 +1263,9 @@ canvas {
 
 .card-back-pattern {
   font-size: clamp(2.5rem, 8vw, 5rem);
-  color: rgba(184, 217, 70, 0.6);
+  color: rgba(100, 130, 40, 0.85);
   font-weight: 800;
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 .card-front {
@@ -1287,33 +1314,38 @@ canvas {
 
 /* Game Title */
 .game-title {
-  font-size: clamp(1.3rem, 3.5vw, 2rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
   font-weight: 800;
-  color: var(--white);
-  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
-  background: var(--navy);
-  padding: clamp(8px, 1.5vw, 12px) clamp(15px, 3vw, 25px);
-  border-radius: 10px;
-  border: 3px solid var(--yellow);
-  box-shadow: 0 3px 0px var(--teal);
-  justify-self: start;
-}
-
-.level-indicator {
-  font-size: clamp(1rem, 2.5vw, 1.4rem);
-  font-weight: 800;
-  color: var(--dark-text);
+  color: var(--navy);
+  padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 20px);
+  border-radius: 12px;
   background: var(--yellow);
-  padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 18px);
-  border-radius: 8px;
   border: 3px solid var(--navy);
   box-shadow: 0 3px 0px var(--teal);
   white-space: nowrap;
-  justify-self: center;
 }
 
-.header-actions {
-  justify-self: end;
+.level-indicator {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 800;
+  color: var(--white);
+  background: var(--navy);
+  padding: clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 24px);
+  border-radius: 12px;
+  border: 3px solid var(--yellow);
+  box-shadow: 0 3px 0px var(--teal);
+  white-space: nowrap;
+}
+
+.pairs-counter {
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  font-weight: 700;
+  color: var(--dark-text);
+  background: var(--white);
+  padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 18px);
+  border-radius: 10px;
+  border: 2px solid var(--teal);
+  white-space: nowrap;
 }
 
 /* Celebration Icon */
@@ -1376,15 +1408,67 @@ canvas {
   }
 }
 
+@media (max-width: 1024px) {
+  .memory-grid-2x2 {
+    grid-template-columns: repeat(2, minmax(150px, 200px));
+    grid-template-rows: repeat(2, minmax(150px, 200px));
+  }
+  
+  .memory-grid-2x4 {
+    grid-template-columns: repeat(4, minmax(120px, 150px));
+    grid-template-rows: repeat(2, minmax(120px, 150px));
+  }
+  
+  .memory-grid-3x4 {
+    grid-template-columns: repeat(4, minmax(100px, 130px));
+    grid-template-rows: repeat(3, minmax(100px, 130px));
+  }
+}
+
+@media (max-width: 768px) {
+  .memory-grid {
+    gap: clamp(10px, 2vw, 15px);
+  }
+  
+  .memory-grid-2x2 {
+    grid-template-columns: repeat(2, minmax(140px, 180px));
+    grid-template-rows: repeat(2, minmax(140px, 180px));
+  }
+  
+  .memory-grid-2x4 {
+    grid-template-columns: repeat(4, minmax(90px, 120px));
+    grid-template-rows: repeat(2, minmax(90px, 120px));
+  }
+  
+  .memory-grid-3x4 {
+    grid-template-columns: repeat(4, minmax(80px, 100px));
+    grid-template-rows: repeat(3, minmax(80px, 100px));
+  }
+}
+
 @media (max-width: 480px) {
   .memory-board-container {
-    padding: 1rem 0.5rem;
-    padding-bottom: 5rem;
+    padding: 0.75rem 0.5rem;
+    padding-bottom: 1.5rem;
   }
   
   .memory-grid {
-    gap: 6px;
-    padding: 10px;
+    gap: clamp(8px, 2vw, 12px);
+  }
+  
+  .memory-grid-2x2 {
+    grid-template-columns: repeat(2, minmax(130px, 160px));
+    grid-template-rows: repeat(2, minmax(130px, 160px));
+  }
+  
+  .memory-grid-2x4 {
+    grid-template-columns: repeat(4, minmax(70px, 90px));
+    grid-template-rows: repeat(2, minmax(70px, 90px));
+  }
+  
+  .memory-grid-3x4 {
+    grid-template-columns: repeat(4, minmax(65px, 80px));
+    grid-template-rows: repeat(3, minmax(65px, 80px));
   }
   
   .game-stats {

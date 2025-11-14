@@ -29,36 +29,30 @@ export function MemoryGameUI() {
       {/* Game Header */}
       <div className="game-ui-overlay">
         <div className="game-header">
-          {/* Title */}
-          <div className="game-title">لعبة تطابق الصور</div>
-
-          {/* Level indicator */}
-          <div className="level-indicator">
-            المستوى {level}
-          </div>
-
-          {/* Header actions */}
-          <div className="header-actions">
+          {/* Left: Restart button */}
+          <div className="header-left">
             <button className="header-button" onClick={resetGame}>
-              🔄 إعادة
+              إعادة
             </button>
           </div>
-        </div>
 
-        {/* Progress bar */}
-        {!gameComplete && (
-          <div className="progress-container">
-            <div className="progress-bar">
-              <div 
-                className="progress-fill" 
-                style={{ width: `${progress}%` }}
-              />
+          {/* Center: Level + Pairs counter stacked */}
+          <div className="header-center">
+            <div className="level-indicator">
+              المستوى {level}
             </div>
-            <div className="progress-text">
-              {matchedPairs} / {totalPairs} أزواج
-            </div>
+            {!gameComplete && (
+              <div className="pairs-counter">
+                {matchedPairs} / {totalPairs} أزواج
+              </div>
+            )}
           </div>
-        )}
+
+          {/* Right: Title */}
+          <div className="header-right">
+            <div className="game-title">لعبة تطابق الصور</div>
+          </div>
+        </div>
       </div>
 
       {/* Game Complete Overlay */}
