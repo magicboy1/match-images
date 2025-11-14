@@ -39,12 +39,8 @@ export function MemoryGameUI() {
 
           {/* Header actions */}
           <div className="header-actions">
-            <button 
-              className="header-button"
-              onClick={toggleMute}
-              aria-label={isMuted ? "تشغيل الصوت" : "كتم الصوت"}
-            >
-              {isMuted ? "🔇" : "🔊"}
+            <button className="header-button" onClick={resetGame}>
+              🔄 إعادة
             </button>
           </div>
         </div>
@@ -63,13 +59,6 @@ export function MemoryGameUI() {
             </div>
           </div>
         )}
-
-        {/* Controls */}
-        <div className="game-controls">
-          <button className="restart-button-small" onClick={resetGame}>
-            🔄 إعادة
-          </button>
-        </div>
       </div>
 
       {/* Game Complete Overlay */}
