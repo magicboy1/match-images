@@ -261,6 +261,42 @@ canvas {
   border-bottom: none;
   box-shadow: none;
   width: 100%;
+  gap: clamp(10px, 2vw, 20px);
+}
+
+.header-left {
+  display: flex;
+  gap: clamp(8px, 1.5vw, 12px);
+  align-items: center;
+}
+
+.header-button {
+  display: flex;
+  align-items: center;
+  gap: clamp(5px, 1vw, 8px);
+  background: var(--white);
+  color: var(--dark-text);
+  border: 3px solid var(--navy);
+  padding: clamp(6px, 1vw, 10px) clamp(10px, 1.5vw, 14px);
+  border-radius: 8px;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 0px var(--yellow);
+  white-space: nowrap;
+  font-family: 'Baloo Bhaijaan 2', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.header-button:hover {
+  background: var(--yellow);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0px var(--orange-red);
+}
+
+.header-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 0px var(--yellow);
 }
 
 .player-indicator {
