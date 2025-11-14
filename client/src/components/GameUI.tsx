@@ -2,6 +2,7 @@ import { useTicTacToe, type Character } from "@/lib/stores/useTicTacToe";
 import { useEffect, useRef } from "react";
 import { useAudio } from "@/lib/stores/useAudio";
 import { voiceManager } from "./VoiceManager";
+import Confetti from "react-confetti";
 
 const characterIcons: Record<Character, string> = {
   girl: "👧",
@@ -99,6 +100,15 @@ export function GameUI() {
 
       {phase === "game_over" && (
         <div className="game-over-overlay">
+          {winner && winner !== "draw" && (
+            <Confetti
+              width={window.innerWidth}
+              height={window.innerHeight}
+              recycle={false}
+              numberOfPieces={500}
+              colors={['#6EC9FF', '#FFE066', '#FF8A80', '#C8A3FF', '#7EE5B1']}
+            />
+          )}
           <div className="game-over-card celebration-card">
             <h2 className="game-over-message">{getStatusMessage()}</h2>
             {winner === "player1" && (
