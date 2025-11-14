@@ -1,8 +1,8 @@
 import { useTicTacToe, type Character } from "@/lib/stores/useTicTacToe";
 
-const characterData: Record<Character, { icon: string; name: string }> = {
-  girl: { icon: "👧", name: "البنت" },
-  robot: { icon: "🤖", name: "الروبوت" },
+const characterData: Record<Character, { icon: string; name: string; isImage?: boolean }> = {
+  girl: { icon: "/characters/girl.png", name: "البنت", isImage: true },
+  robot: { icon: "/characters/robot.png", name: "الروبوت", isImage: true },
   cat: { icon: "🐱", name: "القطة" },
   dog: { icon: "🐶", name: "الكلب" },
   bear: { icon: "🐻", name: "الدب" },
@@ -24,15 +24,20 @@ export function CharacterSelection() {
     }
   };
 
+  const availableCharacters = gameMode === "two_player" 
+    ? (["girl", "robot"] as Character[])
+    : (Object.keys(characterData) as Character[]);
+
   return (
     <div className="character-selection-screen" dir="rtl">
       <div className="character-selection-container">
         <h1 className="selection-title">{getTitle()}</h1>
         
         <div className="character-options">
-          {(Object.keys(characterData) as Character[]).map((character) => {
-            const isUnlocked = unlockedCharacters.includes(character);
+          {availableCharacters.map((character) => {
+            const isUnlocked = gameMode === "two_player" || unlockedCharacters.includes(character);
             const isSelected = character === player1Character;
+            const charData = characterData[character];
             
             return (
               <button
@@ -41,8 +46,14 @@ export function CharacterSelection() {
                 onClick={() => isUnlocked && handleCharacterSelect(character)}
                 disabled={!isUnlocked || isSelected}
               >
-                <div className="character-icon">{characterData[character].icon}</div>
-                <div className="character-name">{characterData[character].name}</div>
+                <div className="character-icon">
+                  {charData.isImage ? (
+                    <img src={charData.icon} alt={charData.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  ) : (
+                    charData.icon
+                  )}
+                </div>
+                <div className="character-name">{charData.name}</div>
                 {!isUnlocked && <div className="lock-badge">🔒</div>}
               </button>
             );

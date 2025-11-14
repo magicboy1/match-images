@@ -4,13 +4,13 @@ import { useAudio } from "@/lib/stores/useAudio";
 import { voiceManager } from "./VoiceManager";
 import Confetti from "react-confetti";
 
-const characterIcons: Record<Character, string> = {
-  girl: "👧",
-  robot: "🤖",
-  cat: "🐱",
-  dog: "🐶",
-  bear: "🐻",
-  lion: "🦁"
+const characterIcons: Record<Character, { icon: string; isImage?: boolean }> = {
+  girl: { icon: "/characters/girl.png", isImage: true },
+  robot: { icon: "/characters/robot.png", isImage: true },
+  cat: { icon: "🐱" },
+  dog: { icon: "🐶" },
+  bear: { icon: "🐻" },
+  lion: { icon: "🦁" }
 };
 
 export function GameUI() {
@@ -77,7 +77,13 @@ export function GameUI() {
 
   const getCurrentPlayerIcon = () => {
     const character = currentTurn === "player1" ? player1Character : player2Character;
-    return character ? characterIcons[character] : "";
+    if (!character) return null;
+    
+    const charData = characterIcons[character];
+    if (charData.isImage) {
+      return <img src={charData.icon} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />;
+    }
+    return charData.icon;
   };
 
   const goToStart = () => {
@@ -88,7 +94,7 @@ export function GameUI() {
     <>
       <div className="game-header" dir="rtl">
         <div className="player-indicator">
-          <span className="player-icon">{getCurrentPlayerIcon()}</span>
+          <div className="player-icon">{getCurrentPlayerIcon()}</div>
           <span className="player-label">
             {gameMode === "two_player" 
               ? (currentTurn === "player1" ? "اللاعب 1" : "اللاعب 2")
