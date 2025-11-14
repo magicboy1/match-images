@@ -440,9 +440,67 @@ canvas {
   font-size: clamp(1.8rem, 6vw, 3rem);
   font-weight: 800;
   color: var(--dark-text);
-  margin-bottom: clamp(1rem, 3vw, 2rem);
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
   line-height: 1.3;
   text-shadow: none;
+}
+
+.game-over-actions {
+  display: flex;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.game-over-button {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.5vw, 12px);
+  border: 5px solid var(--navy);
+  padding: clamp(12px, 2.5vw, 18px) clamp(25px, 5vw, 40px);
+  border-radius: 10px;
+  font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-shadow: none;
+  font-family: 'Baloo Bhaijaan 2', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.game-over-button.primary {
+  background: var(--yellow);
+  color: var(--dark-text);
+  box-shadow: 0 6px 0px var(--orange-red);
+}
+
+.game-over-button.primary:hover {
+  background: var(--orange-red);
+  color: var(--white);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0px var(--navy);
+}
+
+.game-over-button.primary:active {
+  transform: translateY(-2px);
+}
+
+.game-over-button.secondary {
+  background: var(--white);
+  color: var(--dark-text);
+  box-shadow: 0 6px 0px var(--teal);
+}
+
+.game-over-button.secondary:hover {
+  background: var(--teal);
+  color: var(--white);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0px var(--navy);
+}
+
+.game-over-button.secondary:active {
+  transform: translateY(-2px);
 }
 
 .restart-button {
