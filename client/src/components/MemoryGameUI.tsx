@@ -1,19 +1,18 @@
-import { useMemoryGame } from "@/lib/stores/useMemoryGame";
+import { useMatchingGame } from "@/lib/stores/useMemoryGame";
 import { useEffect } from "react";
 import { useAudio } from "@/lib/stores/useAudio";
 import Confetti from "react-confetti";
 
-export function MemoryGameUI() {
+export function MatchingGameUI() {
   const { 
-    level, 
     matchedPairs, 
     moves, 
     gameComplete,
     resetGame,
     nextLevel
-  } = useMemoryGame();
+  } = useMatchingGame();
   
-  const { playSuccess, toggleMute, isMuted } = useAudio();
+  const { playSuccess } = useAudio();
 
   useEffect(() => {
     if (gameComplete) {
@@ -21,36 +20,28 @@ export function MemoryGameUI() {
     }
   }, [gameComplete, playSuccess]);
 
-  const totalPairs = level === 1 ? 2 : level === 2 ? 4 : 6;
-  const progress = totalPairs > 0 ? (matchedPairs / totalPairs) * 100 : 0;
-
   return (
     <>
-      {/* Game Header */}
+      {/* Game Header - RTL Layout */}
       <div className="game-ui-overlay">
-        <div className="game-header">
-          {/* Left: Restart button */}
-          <div className="header-left">
+        <div className="game-header" dir="rtl">
+          {/* Right: Title (first in RTL) */}
+          <div className="header-section">
+            <div className="game-title">لعبة تطابق الصور</div>
+          </div>
+
+          {/* Center: Pairs counter */}
+          <div className="header-section header-center">
+            <div className="pairs-counter-header">
+              الأزواج: {matchedPairs} / 5
+            </div>
+          </div>
+
+          {/* Left: Restart button (last in RTL) */}
+          <div className="header-section">
             <button className="header-button" onClick={resetGame}>
               إعادة
             </button>
-          </div>
-
-          {/* Center: Level + Pairs counter stacked */}
-          <div className="header-center">
-            <div className="level-indicator">
-              المستوى {level}
-            </div>
-            {!gameComplete && (
-              <div className="pairs-counter">
-                {matchedPairs} / {totalPairs} أزواج
-              </div>
-            )}
-          </div>
-
-          {/* Right: Title */}
-          <div className="header-right">
-            <div className="game-title">لعبة تطابق الصور</div>
           </div>
         </div>
       </div>
@@ -69,7 +60,7 @@ export function MemoryGameUI() {
               <div className="celebration-icon">🎉</div>
               
               <div className="game-over-message animated">
-                أحسنت! اكتشفت كل الأزواج 🎊
+                أحسنت! أكملت جميع الأزواج 🎉
               </div>
 
               <div className="game-stats">
@@ -84,25 +75,12 @@ export function MemoryGameUI() {
               </div>
 
               <div className="game-over-actions">
-                {level < 3 ? (
-                  <>
-                    <button className="game-over-button primary" onClick={nextLevel}>
-                      المستوى التالي ▶
-                    </button>
-                    <button className="game-over-button secondary" onClick={resetGame}>
-                      🔄 إعادة اللعب
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button className="game-over-button primary" onClick={() => nextLevel()}>
-                      🔄 العب من جديد
-                    </button>
-                    <button className="game-over-button secondary" onClick={resetGame}>
-                      إعادة المستوى
-                    </button>
-                  </>
-                )}
+                <button className="game-over-button primary" onClick={nextLevel}>
+                  المستوى التالي ▶
+                </button>
+                <button className="game-over-button secondary" onClick={resetGame}>
+                  إعادة اللعب
+                </button>
               </div>
             </div>
           </div>

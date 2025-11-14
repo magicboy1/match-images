@@ -1,61 +1,61 @@
 import { create } from "zustand";
 
-export type CardImage = "scientist" | "microscope" | "robot" | "gear" | "lock" | "key" | "girl" | "earth" | "cloud" | "shield" | "knight" | "rainbow";
-export type Level = 1 | 2 | 3;
+export type CardImage = "scientist" | "microscope" | "robot" | "gear" | "lock" | "key" | "shield" | "earth" | "satellite" | "knight";
 
 export interface Card {
   id: string;
   imageType: CardImage;
   pairId: number;
-  isFlipped: boolean;
+  isSelected: boolean;
   isMatched: boolean;
+  showError: boolean;
 }
 
-interface MemoryGameState {
-  level: Level;
+interface MatchingGameState {
   cards: Card[];
-  flippedCards: Card[];
+  selectedCards: Card[];
   matchedPairs: number;
   moves: number;
   isProcessing: boolean;
   gameComplete: boolean;
   
-  initializeGame: (level: Level) => void;
-  flipCard: (cardId: string) => void;
+  initializeGame: () => void;
+  selectCard: (cardId: string) => void;
   resetGame: () => void;
   nextLevel: () => void;
 }
 
-// Define matching pairs - each pair has a concept relationship (all unique images)
+// Define matching pairs - 5 pairs as requested (all unique images)
 const cardPairs: Record<number, [CardImage, CardImage]> = {
   1: ["scientist", "microscope"],
   2: ["robot", "gear"],
   3: ["lock", "key"],
   4: ["shield", "knight"],
-  5: ["girl", "earth"],
-  6: ["cloud", "rainbow"],
+  5: ["earth", "satellite"],
 };
 
-const createCardDeck = (level: Level): Card[] => {
-  const pairsCount = level === 1 ? 2 : level === 2 ? 4 : 6;
+const createCardDeck = (): Card[] => {
   const cards: Card[] = [];
   
-  for (let i = 1; i <= pairsCount; i++) {
+  // Create all 5 pairs (10 cards total)
+  for (let i = 1; i <= 5; i++) {
     const pair = cardPairs[i];
     if (pair) {
       cards.push({
         id: `card-${i}-a`,
         imageType: pair[0],
         pairId: i,
-        isFlipped: false,
-        isMatched: false
+        isSelected: false,
+        isMatched: false,
+        showError: false
       });
       cards.push({
         id: `card-${i}-b`,
         imageType: pair[1],
         pairId: i,
-        isFlipped: false,
-        isMatched: false
+        isSelected: false,
+        isMatched: false,
+        showError: false
       });
     }
   }
@@ -69,60 +69,59 @@ const createCardDeck = (level: Level): Card[] => {
   return cards;
 };
 
-export const useMemoryGame = create<MemoryGameState>((set, get) => ({
-  level: 1,
+export const useMatchingGame = create<MatchingGameState>((set, get) => ({
   cards: [],
-  flippedCards: [],
+  selectedCards: [],
   matchedPairs: 0,
   moves: 0,
   isProcessing: false,
   gameComplete: false,
   
-  initializeGame: (level: Level) => {
-    const cards = createCardDeck(level);
+  initializeGame: () => {
+    const cards = createCardDeck();
     set({
-      level,
       cards,
-      flippedCards: [],
+      selectedCards: [],
       matchedPairs: 0,
       moves: 0,
       isProcessing: false,
       gameComplete: false
     });
-    console.log(`Memory game initialized - Level ${level}`);
+    console.log("Matching game initialized with 5 pairs");
   },
   
-  flipCard: (cardId: string) => {
-    const { cards, flippedCards, isProcessing, matchedPairs, level } = get();
+  selectCard: (cardId: string) => {
+    const { cards, selectedCards, isProcessing, matchedPairs } = get();
     
-    // Don't allow flipping if processing or already 2 cards flipped
-    if (isProcessing || flippedCards.length >= 2) {
+    // Don't allow selecting if processing or already 2 cards selected
+    if (isProcessing || selectedCards.length >= 2) {
       return;
     }
     
     const card = cards.find(c => c.id === cardId);
-    if (!card || card.isFlipped || card.isMatched) {
+    if (!card || card.isSelected || card.isMatched) {
       return;
     }
     
-    // Flip the card
+    // Select the card - store the updated card object (not the old reference)
+    const updatedCard = { ...card, isSelected: true };
     const newCards = cards.map(c =>
-      c.id === cardId ? { ...c, isFlipped: true } : c
+      c.id === cardId ? updatedCard : c
     );
     
-    const newFlippedCards = [...flippedCards, card];
+    const newSelectedCards = [...selectedCards, updatedCard];
     
     set({
       cards: newCards,
-      flippedCards: newFlippedCards,
-      moves: get().moves + (flippedCards.length === 0 ? 1 : 0)
+      selectedCards: newSelectedCards,
+      moves: get().moves + (selectedCards.length === 0 ? 1 : 0)
     });
     
-    // Check if we have 2 cards flipped
-    if (newFlippedCards.length === 2) {
+    // Check if we have 2 cards selected
+    if (newSelectedCards.length === 2) {
       set({ isProcessing: true });
       
-      const [first, second] = newFlippedCards;
+      const [first, second] = newSelectedCards;
       const isMatch = first.pairId === second.pairId;
       
       console.log("Checking match:", { 
@@ -133,57 +132,61 @@ export const useMemoryGame = create<MemoryGameState>((set, get) => ({
       });
       
       if (isMatch) {
-        // Match found!
+        // Match found! Show green glow
         setTimeout(() => {
           const updatedCards = get().cards.map(c =>
             c.id === first.id || c.id === second.id
-              ? { ...c, isMatched: true }
+              ? { ...c, isMatched: true, isSelected: false }
               : c
           );
           
           const newMatchedPairs = matchedPairs + 1;
-          const totalPairs = level === 1 ? 2 : level === 2 ? 4 : 6;
-          const isGameComplete = newMatchedPairs === totalPairs;
+          const isGameComplete = newMatchedPairs === 5; // Total 5 pairs
           
           set({
             cards: updatedCards,
-            flippedCards: [],
+            selectedCards: [],
             matchedPairs: newMatchedPairs,
             isProcessing: false,
             gameComplete: isGameComplete
           });
           
           if (isGameComplete) {
-            console.log("Level complete!");
+            console.log("Game complete! All 5 pairs matched!");
           }
         }, 600);
       } else {
-        // No match - flip back
+        // No match - show red shake animation then reset
+        const errorCards = get().cards.map(c =>
+          c.id === first.id || c.id === second.id
+            ? { ...c, showError: true }
+            : c
+        );
+        set({ cards: errorCards });
+        
         setTimeout(() => {
           const updatedCards = get().cards.map(c =>
             c.id === first.id || c.id === second.id
-              ? { ...c, isFlipped: false }
+              ? { ...c, isSelected: false, showError: false }
               : c
           );
           
           set({
             cards: updatedCards,
-            flippedCards: [],
+            selectedCards: [],
             isProcessing: false
           });
-        }, 1200);
+        }, 800);
       }
     }
   },
   
   resetGame: () => {
-    const { level } = get();
-    get().initializeGame(level);
+    get().initializeGame();
   },
   
   nextLevel: () => {
-    const { level } = get();
-    const nextLevel = level < 3 ? (level + 1) as Level : 1 as Level;
-    get().initializeGame(nextLevel);
+    // For now, just restart the game (can expand to multiple levels later)
+    get().initializeGame();
   }
 }));

@@ -1,19 +1,19 @@
 import "@fontsource/inter";
-import { useMemoryGame } from "./lib/stores/useMemoryGame";
-import { MemoryCardBoard } from "./components/MemoryCardBoard";
-import { MemoryGameUI } from "./components/MemoryGameUI";
+import { useMatchingGame } from "./lib/stores/useMemoryGame";
+import { MatchingCardBoard } from "./components/MemoryCardBoard";
+import { MatchingGameUI } from "./components/MemoryGameUI";
 import { SoundManager } from "./components/SoundManager";
 import { FullscreenButton } from "./components/FullscreenButton";
 import { useEffect } from "react";
 
 function App() {
-  const { initializeGame } = useMemoryGame();
+  const { initializeGame } = useMatchingGame();
   
   useEffect(() => {
-    initializeGame(1);
+    initializeGame();
   }, [initializeGame]);
   
-  console.log("Memory Matching Game - v2.0 🎴");
+  console.log("Arabic Matching Game - 5 Pairs 🎴");
 
   return (
     <>
@@ -21,8 +21,8 @@ function App() {
       <FullscreenButton />
       
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%' }}>
-        <MemoryGameUI />
-        <MemoryCardBoard />
+        <MatchingGameUI />
+        <MatchingCardBoard />
       </div>
     </>
   );

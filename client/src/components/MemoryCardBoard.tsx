@@ -1,4 +1,4 @@
-import { useMemoryGame, type CardImage } from "@/lib/stores/useMemoryGame";
+import { useMatchingGame, type CardImage } from "@/lib/stores/useMemoryGame";
 import { useAudio } from "@/lib/stores/useAudio";
 
 const cardImages: Record<CardImage, { src: string; name: string }> = {
@@ -8,62 +8,42 @@ const cardImages: Record<CardImage, { src: string; name: string }> = {
   gear: { src: "/game-images/gear.png", name: "ترس" },
   lock: { src: "/game-images/lock.png", name: "قفل" },
   key: { src: "/game-images/key.png", name: "مفتاح" },
-  girl: { src: "/game-images/girl.png", name: "بنت" },
-  earth: { src: "/game-images/earth.png", name: "أرض" },
-  cloud: { src: "/game-images/cloud.png", name: "سحابة" },
   shield: { src: "/game-images/shield.png", name: "درع" },
   knight: { src: "/game-images/knight.png", name: "فارس" },
-  rainbow: { src: "/game-images/rainbow.png", name: "قوس قزح" }
+  earth: { src: "/game-images/earth.png", name: "أرض" },
+  satellite: { src: "/game-images/satellite.png", name: "قمر صناعي" }
 };
 
-export function MemoryCardBoard() {
-  const { cards, flipCard, level } = useMemoryGame();
-  const { playHit } = useAudio();
+export function MatchingCardBoard() {
+  const { cards, selectCard } = useMatchingGame();
+  const { playHit, playSuccess } = useAudio();
 
-  const handleCardClick = (cardId: string) => {
+  const handleCardClick = (cardId: string, isMatched: boolean) => {
+    if (isMatched) return;
     playHit();
-    flipCard(cardId);
+    selectCard(cardId);
   };
-
-  // Determine grid class based on level
-  const getGridClass = () => {
-    if (level === 1) return "memory-grid-2x2"; // 2x2 = 4 cards
-    if (level === 2) return "memory-grid-2x4"; // 2x4 = 8 cards
-    return "memory-grid-3x4"; // 3x4 = 12 cards
-  };
-
-  const gridClass = getGridClass();
 
   return (
-    <div className="memory-board-container" dir="rtl">
-      <div className={`memory-grid ${gridClass}`}>
+    <div className="matching-board-container" dir="rtl">
+      {/* Grid with 10 cards (5 pairs) in 4x3 layout */}
+      <div className="matching-grid">
         {cards.map((card, index) => {
           const imgData = cardImages[card.imageType];
-          const showFront = card.isFlipped || card.isMatched;
           
           return (
             <button
               key={card.id}
-              className={`memory-card ${showFront ? 'flipped' : ''} ${card.isMatched ? 'matched' : ''}`}
-              onClick={() => handleCardClick(card.id)}
-              disabled={card.isFlipped || card.isMatched}
+              className={`matching-card ${card.isSelected ? 'selected' : ''} ${card.isMatched ? 'matched' : ''} ${card.showError ? 'error' : ''}`}
+              onClick={() => handleCardClick(card.id, card.isMatched)}
+              disabled={card.isMatched}
               style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <div className="card-inner">
-                {/* Card Back */}
-                <div className="card-back">
-                  <div className="card-back-pattern">?</div>
-                </div>
-                
-                {/* Card Front */}
-                <div className="card-front">
-                  <img 
-                    src={imgData.src} 
-                    alt={imgData.name}
-                    className="card-image"
-                  />
-                </div>
-              </div>
+              <img 
+                src={imgData.src} 
+                alt={imgData.name}
+                className="card-image"
+              />
             </button>
           );
         })}
