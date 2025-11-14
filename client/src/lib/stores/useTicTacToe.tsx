@@ -216,14 +216,10 @@ export const useTicTacToe = create<TicTacToeState>((set, get) => ({
   
   restart: () => {
     set({
-      phase: "mode_selection",
-      gameMode: null,
-      difficulty: null,
-      player1Character: null,
-      player2Character: null,
       board: Array(9).fill(null),
       currentTurn: "player1",
-      winner: null
+      winner: null,
+      phase: "playing"
     });
   },
   
