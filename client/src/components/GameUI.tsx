@@ -87,29 +87,29 @@ export function GameUI() {
   return (
     <>
       <div className="game-header" dir="rtl">
-        <div className="header-left">
-          <button className="header-button" onClick={goToStart}>
-            <span>البداية</span>
-            <span>🏠</span>
-          </button>
-          <button className="header-button" onClick={restart}>
-            <span>إعادة اللعب</span>
-            <span>🔄</span>
-          </button>
-        </div>
-        
-        <div className="status-message">
-          {getStatusMessage()}
-        </div>
-
         <div className="player-indicator">
+          <span className="player-icon">{getCurrentPlayerIcon()}</span>
           <span className="player-label">
             {gameMode === "two_player" 
               ? (currentTurn === "player1" ? "اللاعب 1" : "اللاعب 2")
               : (currentTurn === "player1" ? "أنت" : "الروبوت")
             }
           </span>
-          <span className="player-icon">{getCurrentPlayerIcon()}</span>
+        </div>
+        
+        <div className="status-message">
+          {getStatusMessage()}
+        </div>
+
+        <div className="header-actions">
+          <button className="header-button" onClick={restart}>
+            <span>إعادة اللعب</span>
+            <span>🔄</span>
+          </button>
+          <button className="header-button" onClick={goToStart}>
+            <span>البداية</span>
+            <span>🏠</span>
+          </button>
         </div>
       </div>
 

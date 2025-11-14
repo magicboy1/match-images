@@ -257,14 +257,15 @@ canvas {
   align-items: center;
   justify-content: space-between;
   padding: clamp(10px, 2vw, 16px) clamp(15px, 3vw, 25px);
-  background: var(--teal);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
   border-bottom: none;
   box-shadow: none;
   width: 100%;
   gap: clamp(10px, 2vw, 20px);
 }
 
-.header-left {
+.header-actions {
   display: flex;
   gap: clamp(8px, 1.5vw, 12px);
   align-items: center;
