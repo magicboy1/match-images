@@ -1,5 +1,5 @@
 import { useMatchingGame } from "@/lib/stores/useMemoryGame";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useAudio } from "@/lib/stores/useAudio";
 import Confetti from "react-confetti";
 
@@ -13,6 +13,20 @@ export function MatchingGameUI() {
   } = useMatchingGame();
   
   const { playSuccess } = useAudio();
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const updateHeaderHeight = () => {
+      if (headerRef.current) {
+        const height = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty('--header-height', `${height}px`);
+      }
+    };
+
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => window.removeEventListener('resize', updateHeaderHeight);
+  }, [matchedPairs]);
 
   useEffect(() => {
     if (gameComplete) {
@@ -24,7 +38,7 @@ export function MatchingGameUI() {
     <>
       {/* Game Header - RTL Layout */}
       <div className="game-ui-overlay">
-        <div className="game-header" dir="rtl">
+        <div className="game-header" dir="rtl" ref={headerRef}>
           {/* Right: Title (first in RTL) */}
           <div className="header-section">
             <div className="game-title">لعبة تطابق الصور</div>
