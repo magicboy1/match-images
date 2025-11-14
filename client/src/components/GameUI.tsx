@@ -1,5 +1,5 @@
 import { useTicTacToe, type Character } from "@/lib/stores/useTicTacToe";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAudio } from "@/lib/stores/useAudio";
 import { voiceManager } from "./VoiceManager";
 import Confetti from "react-confetti";
@@ -17,6 +17,34 @@ export function GameUI() {
   const { phase, winner, restart, player1Character, player2Character, currentTurn, gameMode, unlockCharacter, resetToStart } = useTicTacToe();
   const { playSuccess } = useAudio();
   const prevTurnRef = useRef(currentTurn);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().then(() => {
+        setIsFullscreen(true);
+      }).catch((err) => {
+        console.error('Error attempting to enable fullscreen:', err);
+      });
+    } else {
+      document.exitFullscreen().then(() => {
+        setIsFullscreen(false);
+      }).catch((err) => {
+        console.error('Error attempting to exit fullscreen:', err);
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, []);
 
   useEffect(() => {
     if (phase === "playing" && currentTurn !== prevTurnRef.current) {
@@ -155,6 +183,10 @@ export function GameUI() {
         </div>
 
         <div className="header-actions">
+          <button className="header-button" onClick={toggleFullscreen}>
+            <span>{isFullscreen ? 'خروج' : 'شاشة كاملة'}</span>
+            <span>{isFullscreen ? '⤵️' : '⛶'}</span>
+          </button>
           <button className="header-button" onClick={restart}>
             <span>إعادة اللعب</span>
             <span>🔄</span>
