@@ -11,7 +11,11 @@ const cardImages: Record<CardImage, { src: string; name: string }> = {
   shield: { src: "/game-images/shield.png", name: "درع" },
   knight: { src: "/game-images/knight.png", name: "فارس" },
   earth: { src: "/game-images/earth.png", name: "أرض" },
-  satellite: { src: "/game-images/satellite.png", name: "قمر صناعي" }
+  satellite: { src: "/game-images/satellite.png", name: "قمر صناعي" },
+  "robot-head": { src: "/game-images/robot-head.png", name: "رأس روبوت" },
+  "robot-body": { src: "/game-images/robot-body.png", name: "جسم روبوت" },
+  necklace: { src: "/game-images/necklace.png", name: "عقد" },
+  "hero-girl": { src: "/game-images/hero-girl.png", name: "بطلة" }
 };
 
 export function MatchingCardBoard() {

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type CardImage = "scientist" | "microscope" | "robot" | "gear" | "lock" | "key" | "shield" | "earth" | "satellite" | "knight";
+export type CardImage = "scientist" | "microscope" | "robot" | "gear" | "lock" | "key" | "shield" | "earth" | "satellite" | "knight" | "robot-head" | "robot-body" | "necklace" | "hero-girl";
 
 export interface Card {
   id: string;
@@ -27,8 +27,8 @@ interface MatchingGameState {
 
 // Define matching pairs - 5 pairs as requested (all unique images)
 const cardPairs: Record<number, [CardImage, CardImage]> = {
-  1: ["scientist", "microscope"],
-  2: ["robot", "gear"],
+  1: ["robot-head", "robot-body"],
+  2: ["necklace", "hero-girl"],
   3: ["lock", "key"],
   4: ["shield", "knight"],
   5: ["earth", "satellite"],
