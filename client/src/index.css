@@ -1168,7 +1168,8 @@ canvas {
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding: clamp(1.5rem, 3vw, 3rem);
+  padding-left: clamp(2rem, 4vw, 4rem);
+  padding-right: clamp(2rem, 4vw, 4rem);
   padding-top: calc(var(--header-height, 80px) + clamp(1.5rem, 3vw, 3rem));
   padding-bottom: clamp(2rem, 4vw, 4rem);
   overflow-y: auto;
@@ -1358,8 +1359,10 @@ canvas {
 
 @media (max-width: 480px) {
   .matching-board-container {
-    padding: clamp(1rem, 2vw, 1.5rem);
+    padding-left: clamp(1rem, 3vw, 1.5rem);
+    padding-right: clamp(1rem, 3vw, 1.5rem);
     padding-top: calc(var(--header-height, 80px) + clamp(1rem, 2vw, 1.5rem));
+    padding-bottom: clamp(1.5rem, 3vw, 2rem);
     gap: 1rem;
   }
   
