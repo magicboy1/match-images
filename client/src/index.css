@@ -1168,14 +1168,15 @@ canvas {
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding-left: clamp(2rem, 4vw, 4rem);
-  padding-right: clamp(2rem, 4vw, 4rem);
-  padding-top: calc(var(--header-height, 80px) + clamp(1.5rem, 3vw, 3rem));
-  padding-bottom: clamp(2rem, 4vw, 4rem);
+  padding-left: clamp(3rem, 6vw, 6rem);
+  padding-right: clamp(3rem, 6vw, 6rem);
+  padding-top: calc(var(--header-height, 80px) + clamp(2rem, 4vw, 4rem));
+  padding-bottom: clamp(3rem, 6vw, 6rem);
   overflow-y: auto;
   width: 100%;
   gap: clamp(1rem, 2vw, 2rem);
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .matching-grid {
@@ -1338,6 +1339,11 @@ canvas {
 }
 
 @media (max-width: 768px) {
+  .matching-board-container {
+    padding-left: clamp(2rem, 5vw, 3rem);
+    padding-right: clamp(2rem, 5vw, 3rem);
+  }
+  
   .matching-grid {
     grid-template-columns: repeat(5, 110px);
     grid-template-rows: repeat(2, 110px);
@@ -1346,6 +1352,11 @@ canvas {
 }
 
 @media (max-width: 640px) {
+  .matching-board-container {
+    padding-left: clamp(1.5rem, 4vw, 2rem);
+    padding-right: clamp(1.5rem, 4vw, 2rem);
+  }
+  
   .matching-grid {
     grid-template-columns: repeat(5, 90px);
     grid-template-rows: repeat(2, 90px);
