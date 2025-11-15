@@ -89,11 +89,8 @@ export function MatchingGameUI() {
               </div>
 
               <div className="game-over-actions">
-                <button className="game-over-button primary" onClick={nextLevel}>
-                  المستوى التالي ▶
-                </button>
-                <button className="game-over-button secondary" onClick={resetGame}>
-                  إعادة اللعب
+                <button className="game-over-button primary" onClick={resetGame}>
+                  العب مرة أخرى 🎮
                 </button>
               </div>
             </div>
