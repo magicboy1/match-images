@@ -12,7 +12,7 @@ export function MatchingGameUI() {
     nextLevel
   } = useMatchingGame();
   
-  const { playSuccess } = useAudio();
+  const { playCelebration } = useAudio();
   const headerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -30,9 +30,9 @@ export function MatchingGameUI() {
 
   useEffect(() => {
     if (gameComplete) {
-      playSuccess();
+      playCelebration();
     }
-  }, [gameComplete, playSuccess]);
+  }, [gameComplete, playCelebration]);
 
   return (
     <>
