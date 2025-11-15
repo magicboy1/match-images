@@ -1222,9 +1222,9 @@ canvas {
 
 .matching-grid {
   display: grid;
-  grid-template-columns: repeat(5, 200px);
-  grid-template-rows: repeat(2, 200px);
-  gap: 25px;
+  grid-template-columns: repeat(5, minmax(140px, min(15vw, 240px)));
+  grid-template-rows: repeat(2, minmax(140px, min(15vw, 240px)));
+  gap: clamp(15px, 2vw, 30px);
   justify-content: center;
   max-width: fit-content;
   margin: 0 auto;
@@ -1374,9 +1374,9 @@ canvas {
 /* Responsive matching grid */
 @media (max-width: 1024px) {
   .matching-grid {
-    grid-template-columns: repeat(5, 160px);
-    grid-template-rows: repeat(2, 160px);
-    gap: 20px;
+    grid-template-columns: repeat(5, minmax(120px, min(14vw, 180px)));
+    grid-template-rows: repeat(2, minmax(120px, min(14vw, 180px)));
+    gap: clamp(12px, 1.8vw, 24px);
     padding: clamp(1.5rem, 3vw, 3rem);
   }
 }
@@ -1388,9 +1388,9 @@ canvas {
   }
   
   .matching-grid {
-    grid-template-columns: repeat(5, 120px);
-    grid-template-rows: repeat(2, 120px);
-    gap: 15px;
+    grid-template-columns: repeat(5, minmax(100px, min(16vw, 140px)));
+    grid-template-rows: repeat(2, minmax(100px, min(16vw, 140px)));
+    gap: clamp(10px, 1.5vw, 18px);
     padding: clamp(1.2rem, 2.5vw, 2rem);
   }
 }
@@ -1402,9 +1402,9 @@ canvas {
   }
   
   .matching-grid {
-    grid-template-columns: repeat(5, 90px);
-    grid-template-rows: repeat(2, 90px);
-    gap: 10px;
+    grid-template-columns: repeat(5, minmax(75px, min(17vw, 110px)));
+    grid-template-rows: repeat(2, minmax(75px, min(17vw, 110px)));
+    gap: clamp(8px, 1.2vw, 14px);
     padding: clamp(1rem, 2vw, 1.5rem);
   }
   
@@ -1423,9 +1423,9 @@ canvas {
   }
   
   .matching-grid {
-    grid-template-columns: repeat(5, 70px);
-    grid-template-rows: repeat(2, 70px);
-    gap: 8px;
+    grid-template-columns: repeat(5, minmax(60px, min(18vw, 90px)));
+    grid-template-rows: repeat(2, minmax(60px, min(18vw, 90px)));
+    gap: clamp(6px, 1vw, 10px);
     padding: clamp(0.8rem, 2vw, 1.2rem);
   }
 }
