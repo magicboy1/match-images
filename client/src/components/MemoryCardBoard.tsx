@@ -15,7 +15,13 @@ const cardImages: Record<CardImage, { src: string; name: string }> = {
   "robot-head": { src: "/game-images/robot-head.png", name: "رأس روبوت" },
   "robot-body": { src: "/game-images/robot-body.png", name: "جسم روبوت" },
   necklace: { src: "/game-images/necklace.png", name: "عقد" },
-  "hero-girl": { src: "/game-images/hero-girl.png", name: "بطلة" }
+  "hero-girl": { src: "/game-images/hero-girl.png", name: "بطلة" },
+  "hero-boy": { src: "/game-images/hero-boy.png", name: "بطل" },
+  "lock-blue": { src: "/game-images/lock-blue.png", name: "قفل" },
+  "hero-girl-red": { src: "/game-images/hero-girl-red.png", name: "بطلة" },
+  "cloud-red": { src: "/game-images/cloud-red.png", name: "سحابة" },
+  "hero-boy-green": { src: "/game-images/hero-boy-green.png", name: "بطل" },
+  "shield-green": { src: "/game-images/shield-green.png", name: "درع" }
 };
 
 export function MatchingCardBoard() {

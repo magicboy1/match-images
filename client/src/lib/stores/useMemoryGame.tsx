@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type CardImage = "scientist" | "microscope" | "robot" | "gear" | "lock" | "key" | "shield" | "earth" | "satellite" | "knight" | "robot-head" | "robot-body" | "necklace" | "hero-girl";
+export type CardImage = "scientist" | "microscope" | "robot" | "gear" | "lock" | "key" | "shield" | "earth" | "satellite" | "knight" | "robot-head" | "robot-body" | "necklace" | "hero-girl" | "hero-boy" | "lock-blue" | "hero-girl-red" | "cloud-red" | "hero-boy-green" | "shield-green";
 
 export interface Card {
   id: string;
@@ -29,9 +29,9 @@ interface MatchingGameState {
 const cardPairs: Record<number, [CardImage, CardImage]> = {
   1: ["robot-head", "robot-body"],
   2: ["necklace", "hero-girl"],
-  3: ["lock", "key"],
-  4: ["shield", "knight"],
-  5: ["earth", "satellite"],
+  3: ["hero-boy", "lock-blue"],
+  4: ["hero-girl-red", "cloud-red"],
+  5: ["hero-boy-green", "shield-green"],
 };
 
 const createCardDeck = (): Card[] => {
