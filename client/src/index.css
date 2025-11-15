@@ -1168,9 +1168,9 @@ canvas {
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding: clamp(1rem, 2vw, 2rem);
-  padding-top: calc(var(--header-height, 80px) + clamp(1rem, 2vw, 2rem));
-  padding-bottom: clamp(1.5rem, 3vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 3rem);
+  padding-top: calc(var(--header-height, 80px) + clamp(1.5rem, 3vw, 3rem));
+  padding-bottom: clamp(2rem, 4vw, 4rem);
   overflow-y: auto;
   width: 100%;
   gap: clamp(1rem, 2vw, 2rem);
@@ -1179,8 +1179,8 @@ canvas {
 
 .matching-grid {
   display: grid;
-  grid-template-columns: repeat(4, 170px);
-  grid-template-rows: repeat(3, 170px);
+  grid-template-columns: repeat(5, 170px);
+  grid-template-rows: repeat(2, 170px);
   gap: 20px;
   justify-content: center;
   max-width: fit-content;
@@ -1330,24 +1330,24 @@ canvas {
 /* Responsive matching grid */
 @media (max-width: 1024px) {
   .matching-grid {
-    grid-template-columns: repeat(4, 140px);
-    grid-template-rows: repeat(3, 140px);
+    grid-template-columns: repeat(5, 140px);
+    grid-template-rows: repeat(2, 140px);
     gap: 16px;
   }
 }
 
 @media (max-width: 768px) {
   .matching-grid {
-    grid-template-columns: repeat(4, 120px);
-    grid-template-rows: repeat(3, 120px);
-    gap: 14px;
+    grid-template-columns: repeat(5, 110px);
+    grid-template-rows: repeat(2, 110px);
+    gap: 12px;
   }
 }
 
 @media (max-width: 640px) {
   .matching-grid {
-    grid-template-columns: repeat(4, 95px);
-    grid-template-rows: repeat(3, 95px);
+    grid-template-columns: repeat(5, 90px);
+    grid-template-rows: repeat(2, 90px);
     gap: 10px;
   }
   
@@ -1358,14 +1358,14 @@ canvas {
 
 @media (max-width: 480px) {
   .matching-board-container {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    padding-top: calc(var(--header-height, 80px) + clamp(1rem, 2vw, 1.5rem));
     gap: 1rem;
   }
   
   .matching-grid {
-    grid-template-columns: repeat(4, 80px);
-    grid-template-rows: repeat(3, 80px);
+    grid-template-columns: repeat(5, 70px);
+    grid-template-rows: repeat(2, 70px);
     gap: 8px;
   }
 }
