@@ -132,7 +132,12 @@ export const useMatchingGame = create<MatchingGameState>((set, get) => ({
       });
       
       if (isMatch) {
-        // Match found! Show green glow
+        // Match found! Show green glow and play success sound
+        // Import audio store dynamically to avoid circular dependency
+        import("./useAudio").then(({ useAudio }) => {
+          useAudio.getState().playSuccess();
+        });
+        
         setTimeout(() => {
           const updatedCards = get().cards.map(c =>
             c.id === first.id || c.id === second.id
