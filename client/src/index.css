@@ -1264,7 +1264,16 @@ canvas {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-.matching-card:disabled .card-image {
+.matching-card .card-image-small {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.matching-card:disabled .card-image,
+.matching-card:disabled .card-image-small {
   opacity: 0.7;
 }
 

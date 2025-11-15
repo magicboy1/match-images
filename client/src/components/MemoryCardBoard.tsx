@@ -34,12 +34,16 @@ export function MatchingCardBoard() {
     selectCard(cardId);
   };
 
+  // Images that should be displayed smaller
+  const smallImages = ["lock-blue", "shield-green", "necklace", "cloud-red"];
+
   return (
     <div className="matching-board-container" dir="rtl">
       {/* Grid with 10 cards (5 pairs) in 4x3 layout */}
       <div className="matching-grid">
         {cards.map((card, index) => {
           const imgData = cardImages[card.imageType];
+          const isSmallImage = smallImages.includes(card.imageType);
           
           return (
             <button
@@ -52,7 +56,7 @@ export function MatchingCardBoard() {
               <img 
                 src={imgData.src} 
                 alt={imgData.name}
-                className="card-image"
+                className={isSmallImage ? "card-image-small" : "card-image"}
               />
             </button>
           );
