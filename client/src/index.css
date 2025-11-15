@@ -1209,26 +1209,27 @@ canvas {
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding-left: clamp(3rem, 6vw, 6rem);
-  padding-right: clamp(3rem, 6vw, 6rem);
-  padding-top: calc(var(--header-height, 80px) + clamp(2rem, 4vw, 4rem));
-  padding-bottom: clamp(3rem, 6vw, 6rem);
-  overflow-y: auto;
+  padding-left: clamp(1.5rem, 3vw, 3rem);
+  padding-right: clamp(1.5rem, 3vw, 3rem);
+  padding-top: calc(var(--header-height, 80px) + clamp(1rem, 2vh, 2rem));
+  padding-bottom: clamp(1rem, 2vh, 2rem);
+  overflow: hidden;
   width: 100%;
-  gap: clamp(1rem, 2vw, 2rem);
-  min-height: 100vh;
+  height: 100vh;
   box-sizing: border-box;
 }
 
 .matching-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(140px, min(15vw, 240px)));
-  grid-template-rows: repeat(2, minmax(140px, min(15vw, 240px)));
-  gap: clamp(15px, 2vw, 30px);
+  grid-template-columns: repeat(5, min(16vw, 35vh));
+  grid-template-rows: repeat(2, min(16vw, 35vh));
+  gap: min(2vw, 3vh);
   justify-content: center;
-  max-width: fit-content;
+  align-content: center;
+  max-width: 100%;
+  max-height: 100%;
   margin: 0 auto;
-  padding: clamp(2rem, 4vw, 4rem);
+  padding: min(1.5vw, 2vh);
   box-sizing: border-box;
 }
 
@@ -1374,59 +1375,58 @@ canvas {
 /* Responsive matching grid */
 @media (max-width: 1024px) {
   .matching-grid {
-    grid-template-columns: repeat(5, minmax(120px, min(14vw, 180px)));
-    grid-template-rows: repeat(2, minmax(120px, min(14vw, 180px)));
-    gap: clamp(12px, 1.8vw, 24px);
-    padding: clamp(1.5rem, 3vw, 3rem);
+    grid-template-columns: repeat(5, min(17vw, 36vh));
+    grid-template-rows: repeat(2, min(17vw, 36vh));
+    gap: min(1.8vw, 2.5vh);
+    padding: min(1.2vw, 1.8vh);
   }
 }
 
 @media (max-width: 768px) {
   .matching-board-container {
-    padding-left: clamp(2rem, 5vw, 3rem);
-    padding-right: clamp(2rem, 5vw, 3rem);
+    padding-left: clamp(0.8rem, 1.5vw, 1.5rem);
+    padding-right: clamp(0.8rem, 1.5vw, 1.5rem);
   }
   
   .matching-grid {
-    grid-template-columns: repeat(5, minmax(100px, min(16vw, 140px)));
-    grid-template-rows: repeat(2, minmax(100px, min(16vw, 140px)));
-    gap: clamp(10px, 1.5vw, 18px);
-    padding: clamp(1.2rem, 2.5vw, 2rem);
+    grid-template-columns: repeat(5, min(18vw, 37vh));
+    grid-template-rows: repeat(2, min(18vw, 37vh));
+    gap: min(1.5vw, 2vh);
+    padding: min(1vw, 1.5vh);
   }
 }
 
 @media (max-width: 640px) {
   .matching-board-container {
-    padding-left: clamp(1.5rem, 4vw, 2rem);
-    padding-right: clamp(1.5rem, 4vw, 2rem);
+    padding-left: clamp(0.5rem, 1vw, 1rem);
+    padding-right: clamp(0.5rem, 1vw, 1rem);
   }
   
   .matching-grid {
-    grid-template-columns: repeat(5, minmax(75px, min(17vw, 110px)));
-    grid-template-rows: repeat(2, minmax(75px, min(17vw, 110px)));
-    gap: clamp(8px, 1.2vw, 14px);
-    padding: clamp(1rem, 2vw, 1.5rem);
+    grid-template-columns: repeat(5, min(18.5vw, 38vh));
+    grid-template-rows: repeat(2, min(18.5vw, 38vh));
+    gap: min(1.2vw, 1.5vh);
+    padding: min(0.8vw, 1.2vh);
   }
   
   .matching-card {
-    padding: clamp(8px, 1.5vw, 12px);
+    padding: clamp(6px, 1vw, 10px);
   }
 }
 
 @media (max-width: 480px) {
   .matching-board-container {
-    padding-left: clamp(1rem, 3vw, 1.5rem);
-    padding-right: clamp(1rem, 3vw, 1.5rem);
-    padding-top: calc(var(--header-height, 80px) + clamp(1rem, 2vw, 1.5rem));
-    padding-bottom: clamp(1.5rem, 3vw, 2rem);
-    gap: 1rem;
+    padding-left: clamp(0.3rem, 0.8vw, 0.8rem);
+    padding-right: clamp(0.3rem, 0.8vw, 0.8rem);
+    padding-top: calc(var(--header-height, 80px) + clamp(0.3rem, 0.8vh, 0.8rem));
+    padding-bottom: clamp(0.3rem, 0.8vh, 0.8rem);
   }
   
   .matching-grid {
-    grid-template-columns: repeat(5, minmax(60px, min(18vw, 90px)));
-    grid-template-rows: repeat(2, minmax(60px, min(18vw, 90px)));
-    gap: clamp(6px, 1vw, 10px);
-    padding: clamp(0.8rem, 2vw, 1.2rem);
+    grid-template-columns: repeat(5, min(19vw, 39vh));
+    grid-template-rows: repeat(2, min(19vw, 39vh));
+    gap: min(1vw, 1.2vh);
+    padding: min(0.5vw, 0.8vh);
   }
 }
 

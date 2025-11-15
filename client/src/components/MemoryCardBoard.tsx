@@ -35,7 +35,7 @@ export function MatchingCardBoard() {
   };
 
   // Images that should be displayed smaller
-  const smallImages = ["lock-blue", "shield-green", "necklace", "cloud-red"];
+  const smallImages = ["lock-blue", "shield-green", "necklace", "cloud-red", "robot-head"];
 
   return (
     <div className="matching-board-container" dir="rtl">
